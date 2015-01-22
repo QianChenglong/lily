@@ -7,10 +7,7 @@
 
 NAME_BGN
 
-#ifndef DEF_ERROR_OK
-#define DEF_ERROR_OK
 ERR_DEF(ERROR_OK, 0, "no error");
-#endif
 
 ERR_DEF(ERROR_TEST, 1, "error test");
 

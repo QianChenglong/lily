@@ -39,9 +39,9 @@ std::string Error::toString(int error_code)
     }
 }
 
-//int Error::operator==( const int right ) const
-//{
-//    return error_code_ == right;
-//}
+int Error::operator==( const int right ) const
+{
+    return error_code_ == right;
+}
 
 NAME_END

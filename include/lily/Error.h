@@ -19,7 +19,7 @@ public:
 public:
     Error(int error_code, const std::string& error_msg);
     operator int();
-    //int operator==(const int right) const;
+    int operator==(const int right) const;
 
 private:
     typedef std::map<int,std::string> ErrorMap;
@@ -33,6 +33,6 @@ private:
 
 };
 
-#define ERR_DEF(error_name, error_code, error_string) Error (error_name)((error_code), (error_string))
+#define ERR_DEF(error_name, error_code, error_string) static Error (error_name)((error_code), (error_string))
 
 NAME_END

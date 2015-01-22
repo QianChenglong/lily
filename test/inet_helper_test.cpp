@@ -45,7 +45,7 @@ NAME_BGN
 TEST(name2ip, localhost)
 {
     char ip[16];
-    EXPECT_EQ(name2ip("localhost", ip), ERROR_OK);
+    EXPECT_EQ(ERROR_OK, name2ip("localhost", ip));
     EXPECT_STREQ(ip, "127.0.0.1");
 }
 
