@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <Windows.h>
+
+#include "error.h"
+
+void WinSock::printError(char *fmt, ...)
+{
+    va_list va;
+    va_start(va, fmt);
+
+    vprintf(fmt, va);
+
+    DWORD dwError = WSAGetLastError();
+    LPVOID lpMsgBuf;
+    DWORD  dwResult = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+                                    NULL,
+                                    dwError,
+                                    MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US),
+                                    (LPTSTR)&lpMsgBuf,
+                                    0, NULL);
+    //printf("%s", (CHAR*)lpMsgBuf);
+    //wprintf(_T("%s"), (LPTSTR)lpMsgBuf);
+    if (dwResult == 0) {
+        lpMsgBuf = TEXT("FormatMessage fail");
+    }
+    wprintf(_T(":%d:%s\n"), dwError, lpMsgBuf);
+
+    if (dwResult != 0) {
+        LocalFree(lpMsgBuf);
+    }
+    va_end(va);
+}
+
+char* WinSock::strerror()
+{
+    static TCHAR msg[1024];
+
+    DWORD dwError = WSAGetLastError();
+    LPVOID lpMsgBuf;
+    DWORD  dwResult = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+        NULL,
+        dwError,
+        MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US),
+        (LPTSTR)&lpMsgBuf,
+        0, NULL);
+    //printf("%s", (CHAR*)lpMsgBuf);
+    //wprintf(_T("%s"), (LPTSTR)lpMsgBuf);
+    if (dwResult == 0) {
+        lpMsgBuf = TEXT("FormatMessage fail");
+    }
+    wsprintf(msg, _T(":%d:%s\n"), dwError, lpMsgBuf);
+
+    if (dwResult != 0) {
+        LocalFree(lpMsgBuf);
+    }
+
+    return (char*)msg;
+}
