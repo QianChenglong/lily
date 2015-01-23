@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <lily/lily.h>
+#include <lily/error.h>
 
 NAME_BGN
 
@@ -9,15 +10,17 @@ int error_test()
     return ERROR_TEST;
 }
 
-TEST(Error, ERROR_TEST)
+TEST(Error, strerror)
 {
-    EXPECT_EQ(ERROR_TEST, error_test());
-    EXPECT_STREQ(Error::toString(ERROR_TEST).c_str(), "error test");
+    EXPECT_STREQ(strerror(ERROR_OK), "no error");
+    EXPECT_STREQ(strerror(ERROR_TEST), "error test");
+    EXPECT_STREQ(strerror(ERROR_INVALID_ARGUMENTS), "invalid arguments");
+    EXPECT_STREQ(strerror(ERROR_NAME_RESOLVE_FAIL), "name resolove fail");
 }
 
-TEST(Error, ERROR_INVALID_ARGUMENTS)
+TEST(Error, error_code)
 {
-    EXPECT_STREQ(Error::toString(ERROR_INVALID_ARGUMENTS).c_str(), "invalid arguments");
+    EXPECT_EQ(ERROR_TEST, error_test());
 }
 
 NAME_END

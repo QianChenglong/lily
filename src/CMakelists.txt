@@ -1,10 +1,10 @@
-# FILE(GLOB SRCS "*")
-list(APPEND SRCS
-    console_color.cpp
-    WinSock.cpp
-    inet_helper.cpp
-    Error.cpp
-    )
+FILE(GLOB SRCS "*")
+# list(APPEND SRCS
+#     console_color.cpp
+#     WinSock.cpp
+#     inet_helper.cpp
+#     error.cpp
+#     )
 cxx_library(${PROJECT_NAME} ${SRCS})
 list(APPEND LIBS IPHlpApi ws2_32)
 target_link_libraries(${PROJECT_NAME} ${LIBS})

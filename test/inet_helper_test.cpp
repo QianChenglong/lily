@@ -45,28 +45,28 @@ NAME_BGN
 TEST(name2ip, localhost)
 {
     char ip[16];
-    EXPECT_EQ(ERROR_OK, name2ip("localhost", ip));
+    EXPECT_EQ(name2ip("localhost", ip), ERROR_OK);
     EXPECT_STREQ(ip, "127.0.0.1");
 }
 
-//TEST(name2ip, non_exist)
-//{
-//    char ip[16];
-//    EXPECT_EQ(name2ip("local", ip), (int)ERROR_NAME_RESOLVE_FAIL);
-//}
-//
-//TEST(name2ip, domain)
-//{
-//    char ip[16];
-//    EXPECT_EQ(name2ip("jd.com", ip), (int)ERROR_OK);
-//    EXPECT_STREQ(ip, "211.152.122.55");
-//}
-//
-//TEST(name2ip, domain1)
-//{
-//    char ip[16];
-//    EXPECT_EQ(name2ip("img2.wifi.com", ip), (int)ERROR_OK);
-//    EXPECT_STREQ(ip, "192.192.192.243");
-//}
+TEST(name2ip, non_exist)
+{
+    char ip[16];
+    EXPECT_EQ(name2ip("local", ip), ERROR_NAME_RESOLVE_FAIL);
+}
+
+TEST(name2ip, domain)
+{
+    char ip[16];
+    EXPECT_EQ(name2ip("jd.com", ip), ERROR_OK);
+    EXPECT_STREQ(ip, "211.152.122.5");
+}
+
+TEST(name2ip, domain1)
+{
+    char ip[16];
+    EXPECT_EQ(name2ip("img2.wifi.com", ip), ERROR_OK);
+    EXPECT_STREQ(ip, "192.192.192.243");
+}
 
 NAME_END
