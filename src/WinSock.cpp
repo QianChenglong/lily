@@ -7,6 +7,7 @@
 #include <IPHlpApi.h>
 
 #include <lily/WinSock.h>
+#include <lily/win_util.h>
 
 
 NAME_BGN
@@ -43,6 +44,11 @@ void WinSock::init(uint8_t minor_ver, uint8_t major_ver)
 WinSock::WinSock()
 {
 
+}
+
+char* WinSock::strerror()
+{
+    return win_util::strerror(WSAGetLastError());
 }
 
 NAME_END

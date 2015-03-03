@@ -23,6 +23,12 @@ public:
 
     ~WinSock();
 
+public:
+    /**
+     * ·µ»Øwinsock´íÎóĞÅÏ¢×Ö·û´®
+     */
+    static char* strerror();
+
 private:
     WinSock();
 

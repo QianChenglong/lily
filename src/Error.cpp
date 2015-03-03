@@ -1,5 +1,6 @@
 #include <lily/Error.h>
 
+
 NAME_BGN
 
 static const char *error_tables[] = {

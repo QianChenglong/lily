@@ -1,0 +1,7 @@
+include/lily/console_color.h
+include/lily/defs.h
+include/lily/error.h
+include/lily/inet_helper.h
+include/lily/lily.h
+include/lily/WinSock.h
+include/lily/win_util.h
